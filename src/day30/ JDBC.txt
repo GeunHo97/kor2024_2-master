@@ -1,0 +1,54 @@
+[ JDBC ]
+    1. JAVA DATABASE CONNECT : 자바 데이터베이스 연동
+    2. 현재 java 프로잭트에 JDBC 라이브러리 등록하기
+        1. mysql-connector-j-9.1.0.jar ( 다운로드 )
+        2. 현재 java 프로젝트내 임의 폴더내 넣기
+        3. 프로잭트내 넣어둔 (복사한)mysql-connector-j-9.1.0.jar 파일 오른쪽 클릭 ->
+            가장 하단에 [ Add as Library ] 클릭
+        4. [ OK ]
+    3.계층간의 객체
+        - DAO [ DATA Accecs Object ] : 데이터 접근 객체 , 파일/DB 에 접근하여 실제 데이터를 가져올때 사용
+        - DTO [ DATA Transfer Object ] : 데이터 이동 객체 , 파일/DB 에 접근하여 가져온 데이터를 VIEW 까지 이동하기 위해 사용
+        - VO [ Value Object ] : 값 자체 객체 , ( 읽기모드/ setter 없음 )
+    4. DAO 에서 DB 연동
+        1. 연동할 JDBC 라이브러리 클래스 로드하기 , 일반예외처리
+            Class.forname("com.mysql.cj.jdbc.Driver")
+            mysql : com.mysql.cj.jdbc.Driver , 클래스 패키지 경로
+            oracle : oracle.jdbc.OracleDriver
+        2. 지정한 DB서버와 계정정보가 일치했을때 DB연동을 시도하고 성공시 연동객체를 반환한다.
+            DriverManager.getConnection( "DB SERVER URL", "계정명","비밀번호" );
+            - DB SERVER URL : jdbc:mysql://ip주소:port번호/db명
+            - 로컬PC기준 : jdbc:mysql://localhost:3306/db명
+            - 계정명 root - 비밀번호 1234
+
+
+
+    * 인터페이스란 ? 동일한 목적하에 서로 다른 행위/메소드를 조작
+
+    하나의 객체를 이용하여 서로다른 객체를 조작하기 위한 구조
+
+        리모콘/게임기/키보드(인터페이스)
+    * 각 게임(객체)로 생각하고 각 게임(객체)를 인터페이스에 대입하여 서로 다른 게임을 하나의 인터페이스에 조작하기 위해서
+
+     5. JDBC의 핵심 인터페이스 3개
+        1. Connection 인터페이스 : DB와 연동 성공한 객체 정보를 가지고 조각/기능/메소드 제공 하는 인터페이스
+                 Connection conn = DriverManager.getConnection( mysql )
+                 Connection conn = DriverManager.getConnection( oracle )
+                 Connection conn = DriverManager.getConnection( mariaDB )
+                 -----> 사로 다른 각 DB회사에서 제공하는 클래스(만든사람이 다르므로 클래스는 다르다.) 는 다르다
+                 하지만 하나의 인터페이스로 서로 다른 회사의 클래스를 사용/조작 한다.
+        (1) PreparedStatement ps = conn.prepareStatement( SQL문자열 ); : 기재한 SQL를 매개변수로 전달하면 기재한 SQL를 조작/기능/메소드 제공 객체 반환 함수
+
+        2. PreparedStatement 인터페이스 : 기재된 SQL를 조작/메소드 제공하는 인터페이스
+            (1) ps.setXXX( ?순서번호, Value ) , 현재 기재된 ?에 매개변수를 대입하는 함수
+                -> XXX : 데이터타입
+                ->  ?  : 기재된 SQL내 ? 의 순서번호
+                -> value: 앞 매개변수 ?에 대입할 값
+
+            (2) ps.executeUpdate() : 현재 기재된 SQL를 실행하는 함수
+            (3) ResultSet rs = ps.executeQuert() : 현재 기재된 SQL를 실행하고 조회된 결과를 반환 함수.
+        3. ResultSet 인터페이스 : 실행된 SQL 조회 결과를 조작 하는 인터페이스
+            (1) rs.next() : 조회된 결과의 다음 레코드로 이동 함수 만약에 다음 레코드가 존재하면 true 존재하지 않으면 false
+            (2) rs.getXXX("테이블필드명") : 현재 조회중인 레코드의 지정한 필드명의 값 호출 XXX : 호출할데이터의 타입
+            -> rs.getInt("num"); : 'num' 필드값을 int 타입으로 호출
+            -> rs.getString("content"); : 'content' 필드값을 String 타입으로 호출

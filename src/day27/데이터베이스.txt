@@ -1,0 +1,55 @@
+[ 데이터베이스 ]
+    데이터 : 자료 , 베이스 : 모임/집합  => 자료 집합
+[ 데이터베이스 종류 ]
+    1. 트리 형태 2.네트워크형 3.NOSQL 4.*관계형*
+[ 관계형 데이터 베이스 ]
+    - 관계( 둘 이상의 사람이 관련이 있음이나 관련 뜻 )
+    1. 행(가로) 과 열(세로) 로 이루어진 데이터의 집합 => 표/테이블
+    2. 표/테이블을 고유/식별 값을 참조하여 *서로 다른 테이블끼리 종속되는 관계를 표현* 하는 구조
+[ 관계형 데이터베이스 제공하는 프로그램 = DBMS ]
+    1. Oracle 2.*mySQL* 3.MariaDB 4. Microsoft SQL Server
+[ 필수 용어 ]
+    1. DB : 데이터베이스
+    2. DBA : 데이터베이스 관리자
+    3. DBMS : 데이터베이스 관리 시스템
+    4. DB SERVER : 데이터베이스가 저장되고 데이터를 제공하는 컴퓨터
+        - SERVER : 데이터를 제공 하는 컴퓨터 vs CLIENT : 데이터를 요청 하는 컴퓨터
+    5. SQL : 데이터베이스 시스템 프로그램이 이해 할 수 있는 언어
+    [ 용어들 관계 ]
+    DB SERVER PC <--------------------> 개발자(DBA)
+      - mySQL                             -
+         <----- [한글] 식단표 만들어 -------
+         <----- [SQL] create table 식단표() ---
+[ mySQL 설치 ]
+    1. https://dev.mysql.com/downloads/
+    2. [MySQL Installer for Windows] 클릭
+    3. [ 확인 ]Select Version: 8.x 선택 , Select Operating System: window
+    4. Windows (x86, 32-bit), MSI Installer	8.0.40	306.5M	[ Download  ] 클릭
+    5. 하단 [No thanks, just start my download.] 클릭
+[ 프로그램 설치 ]
+    1. [Custom] 선택 후 [다음]
+    2. Mysql server 8.xxx  ,  MySQL Workbench 8.xx 선택후 오른쪽 이동 후 [다음]
+    3. [ Execute ] 클릭  * 'Visual C++' 없는 경우 설치 화면 -> 설치 진행
+    4. [다음] --> port : 3306 (수정없이 사용 ) ---> [다음] --> password : 1234(권장) --> [다음]--> [다음]--> [다음][ Execute ] -> [finish]
+[ 설치 확인 ]
+    1. 윈도우 --> 시작 --> [ MySQL Workbench ] 아이콘 클릭 실행
+    2. [서버확인] root(계정명) localhost:3306(db서버주소)   아이콘 클릭 ---> 패스워드 : 설치할때 설정한 패스워드
+
+목표 : 자바에서 데이터베이스와 연동하여 데이터를 영구저장 또는 관리
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
